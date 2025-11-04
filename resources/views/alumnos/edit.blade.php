@@ -6,7 +6,7 @@
 @section('content')
 
 
-<form action="{{ route('alumnos.update', $alumno->id) }}" method="post"> <!-- Tenemos que poner el enctype, ya que si no lo ponemos no hay forma de subir un archivo -->
+<form action="{{ route('alumnos.update', $alumno->id) }}" method="post"> 
     @csrf
      @method('put')
     <div class="espacio">

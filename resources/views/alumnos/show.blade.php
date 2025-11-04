@@ -1,42 +1,38 @@
 @extends('bootstrap.template')
 
 @section('content')
-<table class="table table-hover">
-  <thead>
-    <tr>
-        <th>#</th>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Correo</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($alumno as $alum)
-        <tr>
-            <td>{{ $alum->nombre }}</td>
-            <td>{{ $alum->apellidos }}</td>
-            <td>{{ $alum->correo }}</td>
-            <td>
-                <a href=" {{ route('alumnos.show', $alum->id) }}" class="btn btn-success btn-sm">Show</a>
-                <a href=" {{ route('alumnos.edit', $alum->id) }}" class="btn btn-warning btn-sm text-white">Edit</a>
-                <a class="link-destroy btn btn-danger btn-sm text-white"
-                  data-href="{{ route('alumnos.destroy', $alum->id)}}" 
-                  data-peinado="{{ $alum->nombre }}"
-                >Delete</a>
-                <a class="link-destroy btn btn-danger btn-sm text-white" 
-                  data-bs-toggle="modal"
-                  data-bs-target="#destroyModal"
-                  data-href="{{ route('alumnos.destroy', $alum->id)}}" 
-                  data-peinado="{{ $alum->nombre }}">Delete</a>
-            </td>
-        </tr>
-    @endforeach
-  </tbody>
-  <tfoot>
-    <tr>
-        <th colspan="3">Número de CVs guardados:</th>
-        <th>{{ count($alumno) }}</th>
-    </tr>
-  </tfoot>
-</table>
+<main class="px-3">
+    <h1>{{ $alumno->nombre }}</h1> 
+    <p class="lead">
+        <img src="{{ $alumno->getPath() }}" width="30%">
+    </p>
+    <p class="lead">
+          
+    <p class="lead">
+      <h1>Formacion</h1>
+        {{ $alumno->formacion }}
+    </p>
+    <br>
+    <p class="lead">
+      <h1>Experiencia</h1>
+        {{ $alumno->experiencia }}
+    </p>
+    <br>
+    <p class="lead">
+      <h1>Habilidades</h1>
+        {{ $alumno->habilidades }}
+    </p>
+    <p class="lead">
+        <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">
+            {{ $alumno->nombre }}
+        </a>
+         <span class="fw-bold">
+            {{ $alumno->correo }}
+            <br>
+            +34 {{ $alumno->telefono }}
+            <br>
+            {{ $alumno->nota_media}}
+         </span>
+    </p>
+</main>
 @endsection

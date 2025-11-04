@@ -1,29 +1,70 @@
 @extends('bootstrap.template')
 
 @section('content')
-<h1>Alumnos</h1>
 
-<!-- foreach($alumnos as $alumno)
+<!-- Ventanas Modales principio -->
 
-endforeach -->
-
-<div class="card shadow-sm"> <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
-        height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
-            dy=".3em"></text>
-            <!-- Dentro del text $alumno->nombre entre llaves dobles -->
-    </svg>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="card-body">
-            <!-- <p class="card-text">$alumno->apellido  <br>  $alumno->fecha_nacimiento </p> -->
-            <p class="card-text"></p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button> <button
-                        type="button" class="btn btn-sm btn-outline-secondary">Edit</button> </div> <small
-                    class="text-body-secondary">9 mins</small>
-            </div>
-        </div>
+<div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="destroyModalLabel">¿Seguro que quieres borrar a este alumno?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="destroyModalContent">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button  form="form-delete" type="submit" class="btn btn-primary">Delete</button>
+      </div>
     </div>
+  </div>
 </div>
+
+<!-- Ventanas modales fin -->
+
+<hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Correo</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($alumno as $alum)
+        <tr>
+            <td>{{ $alum->id }}</td>
+            <td>{{ $alum->nombre }}</td>
+            <td>{{ $alum->apellidos }}</td>
+            <td>{{ $alum->correo }}</td>
+            <td>
+                <a href=" {{ route('alumnos.show', $alum->id) }}" class="btn btn-success btn-sm">Show</a>
+                <a href=" {{ route('alumnos.edit', $alum->id) }}" class="btn btn-warning btn-sm text-white">Edit</a>
+                <a class="link-destroy btn btn-danger btn-sm text-white" 
+                  data-bs-toggle="modal"
+                  data-bs-target="#destroyModal"
+                  data-href="{{ route('alumnos.destroy', $alum->id)}}" 
+                  data-alumno="{{ $alum->nombre }}">Delete</a>
+            </td>
+        </tr>
+    @endforeach
+  </tbody>
+  <tfoot>
+    <tr>
+        <th colspan="3">Número de alumnos registrados:</th>
+        <th>{{ count($alumno) }}</th>
+    </tr>
+  </tfoot>
+</table>
+
+<form action="" method="post" id="form-delete">
+    @csrf
+    @method('delete')
+</form>
+
 @endsection
+

@@ -3,7 +3,7 @@
 @section('content')
 
 
-<form action="{{ route('peinado.store') }}" method="post" enctype="multipart/form-data"> <!-- Tenemos que poner el enctype, ya que si no lo ponemos no hay forma de subir un archivo -->
+<form action="{{ route('alumnos.store') }}" method="post" enctype="multipart/form-data"> <!-- Tenemos que poner el enctype, ya que si no lo ponemos no hay forma de subir un archivo -->
     @csrf
     <div class="espacio">
         <label for="nombre">Nombre:</label>

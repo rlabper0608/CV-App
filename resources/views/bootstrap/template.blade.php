@@ -25,10 +25,10 @@
                     <use xlink:href="#bootstrap"></use>
                 </svg> </a> </div>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="{{ route('alumnos.index') }}" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="" class="nav-link px-2">Students CVs</a></li>
+            <li><a href="{{ route('main') }}" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="{{ route('alumnos.index') }}" class="nav-link px-2">Students CVs</a></li>
             <li><a href="{{ route('alumnos.create') }}" class="nav-link px-2">Add CV</a></li>
-            <li><a href="" class="nav-link px-2">Edit CV</a></li>
+            <li><a href="" class="nav-link px-2 disabled">Edit CV</a></li>
         </ul>
     </header>
 </div>

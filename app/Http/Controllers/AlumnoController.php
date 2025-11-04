@@ -44,8 +44,6 @@ class AlumnoController extends Controller
             $txtmessage = "Primary Key";
         } catch(QueryException $e){
             $txtmessage = "Null value";
-        }catch (\Exception $e){
-            $txtmessage = "Fatal error";
         }
 
         $message = [
@@ -78,14 +76,14 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno) {
         
-        return view('alumno.show', ['alumno' => $alumno]);
+        return view('alumnos.show', ['alumno' => $alumno]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Alumno $alumno):View {
-        return view('alumno.edit',  ['alumno' => $alumno]);
+        return view('alumnos.edit',  ['alumno' => $alumno]);
     }
 
     /**
